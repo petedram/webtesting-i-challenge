@@ -1,5 +1,5 @@
 const enhancer = require('./enhancer.js');
-const {repair, succeed, fail} = require('./enhancer.js');
+const {repair, succeed, fail, get} = require('./enhancer.js');
 
 
 const {add} = require('./enhancer.js');
@@ -58,8 +58,21 @@ describe('fail', () => {
         const expectedResult = {name: 'pete', durability: 0, enhancement: 10} //expect to get this
         expect(expectedResult).toEqual(actualResult);
     })
+})
 
-
+//if enhancement level 0, name not modified
+//if enhancement level > 0, change name to include enhancement level "[+1] name"
+describe('get', () => {
+    it('should not change name if enhancement 0', () => {
+        const actualResult = get({name: 'pete', durability: 3, enhancement: 0}); //pass in this
+        const expectedResult = {name: 'pete', durability: 3, enhancement: 0} //expect to get this
+        expect(expectedResult).toEqual(actualResult);
+    })
+    it('should change name if enhancement >0', () => {
+        const actualResult = get({name: 'pete', durability: 3, enhancement: 1}); //pass in this
+        const expectedResult = {name: '[+1] pete', durability: 3, enhancement: 1} //expect to get this
+        expect(expectedResult).toEqual(actualResult);
+    })
 })
 
 

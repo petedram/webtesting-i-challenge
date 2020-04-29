@@ -48,8 +48,14 @@ function repair(item) {
   return {...item, durability: 100 };
 }
 
+//if enhancement level 0, name not modified
+//if enhancement level > 0, change name to include enhancement level "[+1] name"
 function get(item) {
-  return { ...item };
+  if (item.enhancement == 0) {
+    return { ...item };
+  } else {
+    return {...item, name: `[+${item.enhancement}] ${item.name}`}
+  }
 }
 
 
