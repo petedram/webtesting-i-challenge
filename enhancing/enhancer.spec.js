@@ -53,6 +53,12 @@ describe('fail', () => {
         const expectedResult = {name: 'pete', durability: 40, enhancement: 16} //expect to get this
         expect(expectedResult).toEqual(actualResult);
     })
+    it('durability should not go below 0', () => {
+        const actualResult = fail({name: 'pete', durability: 3, enhancement: 10}); //pass in this
+        const expectedResult = {name: 'pete', durability: 0, enhancement: 10} //expect to get this
+        expect(expectedResult).toEqual(actualResult);
+    })
+
 
 })
 

@@ -18,15 +18,29 @@ function succeed(item) {
 // should decrease durability by 5 if enhancement is less than 15
 // should decrease durability by 10 if enhancement is 15 or more
 // should decrease enhancement by 1 if enhancement is greater than 16
+// durability should not go below 0
 
 function fail(item) {
+
   if (item.enhancement < 15) {
-    return { ...item, durability: item.durability - 5 };
+    if (item.durability < 5 ) {
+      return { ...item, durability: item.durability - item.durability };
+    } else {
+      return { ...item, durability: item.durability - 5 };
+    }
   } else if (item.enhancement >14) {
       if (item.enhancement > 16) {
-        return { ...item, durability: item.durability - 10, enhancement: item.enhancement-1 };
+        if (item.durability < 10 ) {
+          return { ...item, durability: item.durability - item.durability, enhancement: item.enhancement-1 };
+        } else {
+          return { ...item, durability: item.durability - 10, enhancement: item.enhancement-1 };
+        }
       } else 
+      if (item.durability < 10 ) {
+        return { ...item, durability: item.durability - item.durability };
+      } else {
         return { ...item, durability: item.durability - 10 };
+      }
   }
 }
 
