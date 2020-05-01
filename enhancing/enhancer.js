@@ -54,10 +54,15 @@ function get(item) {
   if (item.enhancement == 0) {
     return { ...item };
   } else {
-    return {...item, name: `[+${item.enhancement}] ${item.name}`}
+      if (item.name.indexOf(']') <0) {
+        return {...item, name: `[+${item.enhancement}] ${item.name}`}
+      }else {
+        var stringName = item.name;
+        stringName = stringName.slice(stringName.indexOf(']') +2);
+        return {...item, name: `[+${item.enhancement}] ${stringName}`}
+      }
   }
 }
-
 
 
 
@@ -70,3 +75,4 @@ function add (args) {
       return sum + value;  
   }, 0)
 }
+

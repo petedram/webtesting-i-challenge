@@ -73,6 +73,11 @@ describe('get', () => {
         const expectedResult = {name: '[+1] pete', durability: 3, enhancement: 1} //expect to get this
         expect(expectedResult).toEqual(actualResult);
     })
+    it('should change name if enhancement >0 and already has changed name', () => {
+        const actualResult = get({name: '[+1] pete', durability: 3, enhancement: 1}); //pass in this
+        const expectedResult = {name: '[+1] pete', durability: 3, enhancement: 1} //expect to get this
+        expect(expectedResult).toEqual(actualResult);
+    })
 })
 
 
